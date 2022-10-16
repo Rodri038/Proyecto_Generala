@@ -32,7 +32,6 @@ return 0;
                 case 1:
                         pedirNombres(jugador1);
                         azarDeDados();
-                        system("pause");
                     break;
                 case 2 :
                     break;

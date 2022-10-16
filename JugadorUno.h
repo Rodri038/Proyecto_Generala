@@ -19,7 +19,7 @@ void azarDeDados(){
 void cargarDados(int vDadosAzar[]){
     int i;
         for(i = 0; i<=4; i++){
-            vDadosAzar[i]= rand() % 10;
+            vDadosAzar[i]= rand() % 6+1;
         }
 }
 
@@ -27,7 +27,9 @@ void mostrarDados(int vDadosAzar[]){
     int i;
         for(i = 0; i<=4; i++){
             cout<<" "<<vDadosAzar[i]<<" ";
-        }
+            }
+        cout<<" "<<endl;
+        cin.get();
 }
 
 
