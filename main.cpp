@@ -19,7 +19,7 @@ return 0;
 
  void menu(){
         bool exit=true, valor;
-        int opcion, puntaje=0;
+        int opcion, puntaje=0, vDadosAzar[5];
         char jugador1[20], jugador2[20];
         while(exit){
                 cout<<"---Elija una opcion---"<<endl;
@@ -31,7 +31,7 @@ return 0;
                 switch(opcion){
                 case 1:
                         pedirNombres(jugador1);
-                        comienzo(jugador1);
+                        comienzo(jugador1, vDadosAzar, 5);
                     break;
                 case 2 :
                     break;
