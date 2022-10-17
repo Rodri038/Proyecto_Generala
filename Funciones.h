@@ -7,8 +7,9 @@ void menu();
 void pedirNombres(char nombre[]);
 void cargarDados(int vDadosAzar[]);
 void mostrarDados(int vDadosAzar[]);
-void comienzo(char nombre);
+void comienzo(char nombre[], int vDados[], int tam);
 int jugadaAlNumero(int vDados[]);
+void ordenarDeMenorAMayor(int vDados[], int tam);
 bool escalera(int vDados[]);
 void ponerEnCero(int Array[]);
 
