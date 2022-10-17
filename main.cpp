@@ -18,8 +18,8 @@ return 0;
 }
 
  void menu(){
-        bool exit=true;
-        int opcion;
+        bool exit=true, valor;
+        int opcion, puntaje=0;
         char jugador1[20], jugador2[20];
         while(exit){
                 cout<<"---Elija una opcion---"<<endl;
@@ -31,8 +31,7 @@ return 0;
                 switch(opcion){
                 case 1:
                         pedirNombres(jugador1);
-                        azarDeDados();
-                        system("pause");
+                        comienzo(jugador1);
                     break;
                 case 2 :
                     break;

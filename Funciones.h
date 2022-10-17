@@ -5,9 +5,12 @@
 
 void menu();
 void pedirNombres(char nombre[]);
-void azarDeDados();
 void cargarDados(int vDadosAzar[]);
 void mostrarDados(int vDadosAzar[]);
+void comienzo(char nombre);
+int jugadaAlNumero(int vDados[]);
+bool escalera(int vDados[]);
+void ponerEnCero(int Array[]);
 
 
 
