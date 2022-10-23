@@ -3,8 +3,6 @@
 #define JUGADORUNO_H_INCLUDED
 #include "funciones.h"
 
-char nombre[20];
-
 //Funcion poner en cero array
 void ponerEnCero(int Array[], int tam){
     int i;
@@ -23,6 +21,7 @@ void pedirNombres(char nombre[]){
 void comienzo(char nombre[], int vDados[], int tam){
     int tiradas=1;
     bool juegoEscalera;
+    pedirNombres(nombre);
     ponerEnCero(vDados, 5);
     cout<<"             Bienvenido  "<<nombre<<" a mi juego de generala, jugamos?               "<<endl;
     while(tiradas<=3){
@@ -85,7 +84,7 @@ void ordenarDeMenorAMayor(int vDados[], int tam){
         }
 }
 
-//funcion para  detectar el juego escalera
+//funcion para  detectar el juego Escalera
 bool escalera(int vDados[], int tam){
     int i, valor;
     bool juego=true;
@@ -95,6 +94,14 @@ bool escalera(int vDados[], int tam){
         }
         return juego;
 }
+
+//funcion para detectar el juego Full
+
+
+
+
+
+
 
 
 
