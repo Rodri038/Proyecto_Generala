@@ -5,13 +5,13 @@
 
 void menu();
 void pedirNombres(char nombre[]);
-void cargarDados(int vDadosAzar[]);
-void mostrarDados(int vDadosAzar[]);
+void cargarDados(int vDadosAzar[], int tam);
+void mostrarDados(int vDadosAzar[], int tam);
 void comienzo(char nombre[], int vDados[], int tam);
 int jugadaAlNumero(int vDados[]);
 void ordenarDeMenorAMayor(int vDados[], int tam);
-bool escalera(int vDados[]);
-void ponerEnCero(int Array[]);
+bool escalera(int vDados[], int tam);
+void ponerEnCero(int Array[], int tam);
 
 
 

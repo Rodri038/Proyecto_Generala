@@ -3,8 +3,6 @@
 #define JUGADORUNO_H_INCLUDED
 #include "funciones.h"
 
-char nombre[20];
-
 //Funcion poner en cero array
 void ponerEnCero(int Array[], int tam){
     int i;
@@ -23,32 +21,33 @@ void pedirNombres(char nombre[]){
 void comienzo(char nombre[], int vDados[], int tam){
     int tiradas=1;
     bool juegoEscalera;
+    pedirNombres(nombre);
     ponerEnCero(vDados, 5);
     cout<<"             Bienvenido  "<<nombre<<" a mi juego de generala, jugamos?               "<<endl;
     while(tiradas<=3){
-        cargarDados(vDados);
-        mostrarDados(vDados);
+        cargarDados(vDados, 5);
+        mostrarDados(vDados, 5);
         //detectar que tipo de juegos se armaron
         ordenarDeMenorAMayor(vDados, 5);
-        juegoEscalera = escalera(vDados);
+        juegoEscalera = escalera(vDados, 5);
         juegoEscalera ? cout<<"Armaste Escalera" : cout<<"No armaste escalera";
         tiradas++;
-    }
+        }
     tiradas=1;
 }
 
 //carga los numeros del array y genera un numero aleatorio por cada posicion
-void cargarDados(int vDados[]){
+void cargarDados(int vDados[], int tam){
     int i;
-        for(i = 0; i<=4; i++){
+        for(i = 0; i<=tam-1; i++){
             vDados[i]= rand() % 6+1;
         }
 }
 
 //muestra los numeros del array
-void mostrarDados(int vDados[]){
+void mostrarDados(int vDados[], int tam){
     int i;
-        for(i = 0; i<=4; i++){
+        for(i = 0; i<=tam-1; i++){
             cout<<" "<<vDados[i]<<" ";
             }
         cout<<" "<<endl;
@@ -73,39 +72,45 @@ int jugadaAlNumero(int vDados[]){
 
 //funcion ordenar numeros
 void ordenarDeMenorAMayor(int vDados[], int tam){
-    int i,z,posicion=0, maximo=0;
-    int vAux[tam-1];
-        for(i=0; i<=tam-1; i++){
-           if(vDados[i]>maximo) maximo = vDados[i];
-           vAux[i]=maximo+1;
-        }
-        for(i= 0; i<=tam-1;i++){
-            for(z= 0; z<=tam-1; z++){
-                if(vDados[z]<vAux[i]) {
-                        vAux[i]=vDados[z];
-                        posicion=z;
+    int i,z,aux=0;
+        for(i = 0; i <=tam-1; i++){
+            for(z = 0; z <=tam-1; z++){
+                if(vDados[i]<vDados[z]){
+                    aux=vDados[i];
+                    vDados[i]=vDados[z];
+                    vDados[z]= aux;
+                }
             }
         }
-        vDados[posicion]=maximo;
-    }
-    for(i=0; i<=tam-1;i++){
-        vDados[i]=vAux[i];
+}
+
+//funcion para  detectar el juego Escalera
+bool escalera(int vDados[], int tam){
+    int i, valor;
+    bool juego=true;
+        valor=vDados[0];
+        for(i = 1; i <=tam-1;i++){
+            vDados[i]>valor ? valor=vDados[i] : juego=false;
+        }
+        return juego;
+}
+
+//funcion para detectar el juego Full
+bool full(int vDados[], int tam){
+    int i; repetidos=0, valorRepetido;
+    valorRepetido=vDados[0];
+    for(i = 1; i <=tam-1; i++){
+        if(vDados[i]==valorRepetido){
+                valorRepetido = vDados[i]
+
+        }
     }
 }
 
-//funcion para  detectar el juego escalera
-//Resolverlo de otra manera
-bool escalera(int vDados[]){
-    int i, contador=0;
-    bool juego=true;
-    contador=vDados[0];
-        for(i=1; i<=4;i++){
-                contador++;
-            if(contador!=vDados[i]) juego=false;
-    }
-    contador=0;
-    return juego;
-}
+
+
+
+
 
 
 
