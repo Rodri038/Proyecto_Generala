@@ -21,7 +21,6 @@ void pedirNombres(char nombre[]){
 void comienzo(char nombre[], int vDados[], int tam){
     int tiradas=1;
     bool juegoEscalera;
-    pedirNombres(nombre);
     ponerEnCero(vDados, 5);
     cout<<"             Bienvenido  "<<nombre<<" a mi juego de generala, jugamos?               "<<endl;
     while(tiradas<=3){
@@ -95,17 +94,35 @@ bool escalera(int vDados[], int tam){
         return juego;
 }
 
-//funcion para detectar el juego Full
-bool full(int vDados[], int tam){
-    int i; repetidos=0, valorRepetido;
-    valorRepetido=vDados[0];
-    for(i = 1; i <=tam-1; i++){
-        if(vDados[i]==valorRepetido){
-                valorRepetido = vDados[i]
-
+//Funcion para detectar los juegos de Full-Poker-Generala
+int armadoDeJuegos(int vDados[], int tam){
+    int i, igualesAnterior=0, iguales=0, cantIguales=1, auxiliar, puntos=0;
+    auxiliar=vDados[0];
+    for(i = 1; i <= tam-1, i++){
+        if(vDados[i]==auxiliar){
+            if(iguales==0){
+                iguales+=2;
+            }else{
+                iguales++;
+            }
+        }else{
+            auxiliar=vNumeros[i];
+            cantIguales++;
+            igualesAnterior=iguales;
+            iguales=0;
         }
     }
+    iguales+=igualesAnterior;
+    if(iguales==5&&cantIguales==1){
+        puntaje=50;
+    }else if(iguales==5&&cantIguales=2){
+        puntaje=30;
+    }else if(iguales==4&&cantIguales==2){
+        puntaje=40;
+    }
+    return puntaje;
 }
+
 
 
 
