@@ -32,7 +32,7 @@ void comienzo(char nombre[], int vDados[], int tam){
         juegoEscalera = escalera(vDados, 5);
         juegoEscalera ? cout<<"Armaste Escalera" : cout<<"No armaste escalera";
         tiradas++;
-    }
+        }
     tiradas=1;
 }
 
@@ -96,7 +96,16 @@ bool escalera(int vDados[], int tam){
 }
 
 //funcion para detectar el juego Full
+bool full(int vDados[], int tam){
+    int i; repetidos=0, valorRepetido;
+    valorRepetido=vDados[0];
+    for(i = 1; i <=tam-1; i++){
+        if(vDados[i]==valorRepetido){
+                valorRepetido = vDados[i]
 
+        }
+    }
+}
 
 
 
