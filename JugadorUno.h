@@ -3,8 +3,17 @@
 #define JUGADORUNO_H_INCLUDED
 #include "funciones.h"
 
+//Funcion poner en cero vector posible jugada
+void ponerEnCero( int vPJ[]){
+    int i;
+   for(i=0; i<10; i++){
+    vPJ[i] = 0;
+   }
+}
+
+
 //Funcion poner en cero array
-void ponerEnCero(int Array[], int tam){
+void ponerEnCero(int Array[], int tam ,int vPJ[]){
     int i;
    for(i=0; i<=tam-1; i++){
     Array[i] = 0;
@@ -18,11 +27,12 @@ void pedirNombres(char nombre[]){
 }
 
 //da comienzo a la partida
-void comienzo(char nombre[], int vDados[], int tam){
+void comienzo(char nombre[], int vDados[], int tam,int vPJ[]){
     int tiradas=1;
     bool juegoEscalera;
     pedirNombres(nombre);
     ponerEnCero(vDados, 5);
+     ponerEnCero(vPJ[]);
     cout<<"             Bienvenido  "<<nombre<<" a mi juego de generala, jugamos?               "<<endl;
     while(tiradas<=3){
         cargarDados(vDados, 5);
@@ -95,21 +105,105 @@ bool escalera(int vDados[], int tam){
         return juego;
 }
 
-//funcion para detectar el juego Full
-bool full(int vDados[], int tam){
-    int i; repetidos=0, valorRepetido;
-    valorRepetido=vDados[0];
-    for(i = 1; i <=tam-1; i++){
-        if(vDados[i]==valorRepetido){
-                valorRepetido = vDados[i]
+//funcion para detectar posibles jugadas
 
-        }
-    }
+void PosibleCombinacion(int vDados[],int tam,int vPJ[]){
+  int i;
+  for (i=0;i<tam;i++){
+    if(vDados[i]==1)vPJ[0]=1;
+     if(vDados[i]==2)vPJ[1]=1;
+      if(vDados[i]==3)vPJ[2]=1;
+       if(vDados[i]==4)vPJ[3]=1;
+        if(vDados[i]==5)vPJ[4]=1;
+         if(vDados[i]==6)vPJ[5]=1;
+         if(bool escalera(int vDados[], int tam)==true)vPJ[6]=1;
+         //funcion detectar full poker generala
+
+  }
+
+
 }
 
 
 
+//funcion para detectar si hay o no hay una posible jugada
+void hayOnoJugada(int vPJ[]){
+    bool hayJugada=false;
+    int i;
+for (i=0;i<=9;i++){
+        if(vPJ[i]==1)hayJugada=true;
+                  }
+hayJugada==true?elegirJugada(int vPJ[],int ComNoJug[]):cancelarJugada(int ComNoJug[]);
+}
 
+
+
+//f para elegir una jugada que sea posible
+void elegirJugada(int vPJ[],int ComNoJug[]){
+    int jugada;
+    cout<<"elija una jugada"<<endl;
+    for (i=0;i<=9;i++){
+        if(vPJ[i]==1)cout<<"jugada"<<i+1<<endl;
+    }
+    cin>>jugada;
+system("clear");
+while (vPJ[jugada-1]!=1&&ComNoJug[jugada-1]!=1){
+    cout<<"eligio una jugada que no era posible"<<endl;
+    cout<<"elija una jugada"<<endl;
+    for (i=0;i<=9;i++){
+        if(vPJ[i]==1)cout<<"jugada"<<i+1<<endl;
+    }
+    cin>>jugada;
+system("clear");
+}
+switch(jugada){
+                case 1:
+
+                    break;
+                case 2 :  int jugadaAlNumero(int vDados[]),ComNoJug[jugada-1]=0;
+                    break;
+                case 3:  int jugadaAlNumero(int vDados[]),ComNoJug[jugada-1]=0;
+                    break;
+                case 4:  int jugadaAlNumero(int vDados[]),ComNoJug[jugada-1]=0;
+                    break;
+                case 5: int jugadaAlNumero(int vDados[]),ComNoJug[jugada-1]=0;
+                    break;
+                case 6:  int jugadaAlNumero(int vDados[]),ComNoJug[jugada-1]=0;
+                    break;
+                case 7:  int escalerapuntos(int vDados[]),ComNoJug[jugada-1]=0;
+                    break;
+                case 8:  int fullpuntos(int vDados[]),ComNoJug[jugada-1]=0;
+                    break;
+                case 9:  int pokerpuntos(int vDados[]),ComNoJug[jugada-1]=0;
+                    break;
+                case 10  int generalapuntos(int vDados[]),ComNoJug[jugada-1]=0;
+
+                break;
+                }
+
+}
+
+
+//f para tachar jugada , cuando no hay jugada posible
+void CancelarJugada(int ComNoJug[]){
+int i , jugada;
+cout<<"no hay una jugada posible "<<endl;
+cout<<"elija que jugada tachar"<<endl;
+for (i=0;i<=9;i++){
+        if(ComNoJug[i]==1)cout<<"jugada"<<i+1<<endl;
+    }
+cin>>jugada;
+while(ComNoJug[jugada-1]!=1){
+    cout<<"eligio una jugada que ya se jugo o ya fue tachada"<<endl;
+    cout<<"elija que jugada tachar"<<endl;
+for (i=0;i<=9;i++){
+        if(ComNoJug[i]==1)cout<<"jugada"<<i+1<<endl;
+    }
+cin>>jugada;
+
+}
+ComNoJug[jugada-1]=0;
+}
 
 
 

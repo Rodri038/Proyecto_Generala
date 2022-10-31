@@ -16,11 +16,13 @@ menu();
 
 return 0;
 }
-
 void menu(){
         bool exit=true;
         int opcion, puntaje=0, vDadosAzar[5];
         char jugador1[20], jugador2[20];
+        //ignacio
+        int vPJ[10],ComNoJug[10];
+
         while(exit){
                 cout<<"---Elija una opcion---"<<endl;
                 cout<<"---Jugar de a UNO---[1]"<<endl;
