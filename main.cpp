@@ -2,18 +2,23 @@
 //Alumnos: Rodrigo Burns
 #include <iostream>
 #include <cstdlib>
-#include <conio.h>
 #include <string.h>
+#include <time.h>
+#include <stdlib.h>
+
+#include "rlutil.h"
 
 using namespace std;
 
 #include "jugadorUno.h"
 #include "funciones.h"
+#include "Menu.h"
 
 int main(){;
 
 menu();
 
+<<<<<<< HEAD
 return 0;
 }
 void menu(){
@@ -48,6 +53,10 @@ void menu(){
                 }
  }
 system("cls");
+=======
+>>>>>>> 63b0bf614f76ff4c418a0a4edb245d8692e93e8b
 }
+
+
 
 

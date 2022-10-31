@@ -4,13 +4,18 @@
 #include "jugadorUno.h"
 
 void menu();
+void posicionDeCursor(int posX, int posY, int &posCursor, int tecla);
+void accionesCursor(int posCursor, int tecla, bool &salida);
+void mostrarTexto(const char* text, int posX, int posY);
 void pedirNombres(char nombre[]);
+int cantidadDeRondas();
 void cargarDados(int vDadosAzar[], int tam);
-void mostrarDados(int vDadosAzar[], int tam);
-void comienzo(char nombre[], int vDados[], int tam);
+void mostrarArray(int vDados, int posX, int posY);
+void comienzo(char nombre[], int vDados[], int tam, int cantRondas);
 int jugadaAlNumero(int vDados[]);
 void ordenarDeMenorAMayor(int vDados[], int tam);
-bool escalera(int vDados[], int tam);
+int escalera(int vDados[], int tam);
+int armadoDeJuegos(int vDados[], int tam);
 void ponerEnCero(int Array[], int tam);
 void PosibleCombinacion(int vDados[],int tam,int vPJ[]);
 void ponerEnCero( int vPJ[]);
