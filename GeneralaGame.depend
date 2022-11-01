@@ -32,3 +32,36 @@
 
 1667153412 c:\users\rburn\desktop\generalagame\menu.h
 
+1667336594 source:c:\users\54113\downloads\proyecto_generala\main.cpp
+	<iostream>
+	<cstdlib>
+	<string.h>
+	<time.h>
+	<stdlib.h>
+	"rlutil.h"
+	"jugadorUno.h"
+	"funciones.h"
+	"Menu.h"
+
+1667243197 c:\users\54113\downloads\proyecto_generala\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1667340870 c:\users\54113\downloads\proyecto_generala\jugadoruno.h
+	"funciones.h"
+
+1667340831 c:\users\54113\downloads\proyecto_generala\funciones.h
+	"jugadorUno.h"
+
+1667338750 c:\users\54113\downloads\proyecto_generala\menu.h
+

@@ -3,7 +3,7 @@
 
 void menu(){
         int letra=0, rondas;
-        int puntaje=0, vDadosAzar[5];
+        int puntaje=0, vDados[5];
         char jugador1[20]; //jugador2[20];
         int cursor=0;
         const int inicial=49, comienzoDeTexto=50;
@@ -42,7 +42,7 @@ void menu(){
 //get key escucha la tecla que tocamos y devuelve un entero
         int key = rlutil::getkey();
         posicionDeCursor(inicial, 11, cursor, key);
-        accionesCursor(cursor, key, exit);
+        accionesCursor(cursor, key, exit,jugador1,5,vDados);
     }while(exit);
 }
 
