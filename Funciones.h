@@ -5,7 +5,7 @@
 
 void menu();
 void posicionDeCursor(int posX, int posY, int &posCursor, int tecla);
-void accionesCursor(int posCursor, int tecla, bool &salida);
+void accionesCursor(int posCursor, int tecla, bool &salida, char nombre[],  int vDados[], int tam);
 void mostrarTexto(const char* text, int posX, int posY);
 void pedirNombres(char nombre[]);
 int cantidadDeRondas();

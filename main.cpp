@@ -1,5 +1,5 @@
 ///TP-Generala
-//Alumnos: Rodrigo Burns
+//Alumnos: Rodrigo Burns; Ignacio Orco Barbeberis; Cristian Santiago Godoy
 #include <iostream>
 #include <cstdlib>
 #include <string.h>

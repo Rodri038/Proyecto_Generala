@@ -42,7 +42,7 @@ void menu(){
 //get key escucha la tecla que tocamos y devuelve un entero
         int key = rlutil::getkey();
         posicionDeCursor(inicial, 11, cursor, key);
-        accionesCursor(cursor, key, exit);
+        accionesCursor(cursor, key, exit, jugador1,  vDadosAzar, 5);
     }while(exit);
 }
 
