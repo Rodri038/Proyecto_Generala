@@ -2,10 +2,9 @@
 #ifndef JUGADORUNO_H_INCLUDED
 #define JUGADORUNO_H_INCLUDED
 #include "funciones.h"
-int vDados[5];
-int ComNoJug[10];
-int vPJ[10];
-//Funcion poner en cero vector posible jugada
+
+//int puntaje[2];
+//void mostrar puntaje (int puntaje[],)
 
 
 
@@ -70,6 +69,14 @@ void accionesCursor(int posCursor, int tecla, bool &salida,char nombre[],int tam
     }
 }
 
+void ponerEnUno(int Array[], int tam ){
+    int i;
+   for(i=0; i<=tam-1; i++){
+    Array[i] = 1;
+   }
+}
+
+
 
 //Funcion poner en cero array
 void ponerEnCero(int Array[], int tam ){
@@ -107,20 +114,21 @@ while (contador<=3){
     ponerEnCero( vPJ, 10);
     PosibleCombinacion( vDados, tam, vPJ);
     cout<<"quiere volver a tirar"<<endl;
-cout<<"si si ,ingrese 1 si , no ingrese 0: ";
+cout<<"si si ,ingrese 1 si , no ingrese 0:   ";
 cin>>n;
 if(n==1){tirarDados( vDados,tam);
+ponerEnCero( vPJ, 10);
+PosibleCombinacion( vDados, tam, vPJ);
 contador++;
-}
-else{hayOnoJugada(vPJ);
+
+        }
+else{hayOnoJugada(vPJ,vDados);
 contador=3;
-}
+    }
 
-}
+                   }
 
-
-
-}
+                                                  }
 void tirarDados(int vDados[],int tam){
 cargarDados(vDados, tam);
     mostrarArray(vDados, 50, 11);
@@ -131,6 +139,7 @@ cargarDados(vDados, tam);
 void comienzo(char nombre[], int vDados[], int tam, int cantRondas,int vPJ[]){
     int rondas, contador=1;
     int juegos, escaleraGame;
+    ponerEnUno(ComNoJug,10);
     do{
 
 
@@ -138,18 +147,8 @@ void comienzo(char nombre[], int vDados[], int tam, int cantRondas,int vPJ[]){
 
 
 
-    hayOnoJugada(vPJ);
-  //  escaleraGame = escalera(vDados, 5);
-   // juegos = armadoDeJuegos(vDados, 5);
-    if(escaleraGame==25){
-            cout<<"Formaste Escalera"<<endl;
-    }else if(juegos==30){
-            cout<<"Formaste Full"<<endl;
-    }else if(juegos==40){
-            cout<<"Formaste Poker"<<endl;
-    }else if(juegos==50){
-            cout<<"Formaste Generala"<<endl;
-    };
+
+
     system("pause");
     rlutil::cls();
     contador++;
@@ -171,7 +170,7 @@ void cargarDados(int vDados[], int tam){
 //funcion para jugar al numero, recibe un vector, y retorna los puntos de acuerdo a la eleccion del numero
 int jugadaAlNumero(int vDados[],int eleccion){
     int  i, cant=0, puntos;
-
+cout<<"jugaste al numero:"<<eleccion<<endl;
         for(i =0; i<=4;i++){
             if(eleccion == vDados[i]) cant++;
         }
@@ -193,101 +192,79 @@ void ordenarDeMenorAMayor(int vDados[], int tam){
 
 }
 }
-//funcion para  detectar el juego Escalera
-/*bool escalera(int vDados[], int tam){
-    int i, valor;
-    bool juego=true;
-        valor=vDados[0];
-        for(i = 1; i <=tam-1;i++){
-            vDados[i]>valor ? valor=vDados[i] : juego=false;
-        }
-        return juego;
-}
-/**/
-//funcion para detectar posibles jugadas
 
-/*void PosibleCombinacion(int vDados[],int tam,int vPJ[]){
-  int i;
-  for (i=0;i<tam;i++){
-    if(vDados[i]==1)vPJ[0]=1;
-     if(vDados[i]==2)vPJ[1]=1;
-      if(vDados[i]==3)vPJ[2]=1;
-       if(vDados[i]==4)vPJ[3]=1;
-        if(vDados[i]==5)vPJ[4]=1;
-         if(vDados[i]==6)vPJ[5]=1;
-         if(escalera(vDados,tam)==true)vPJ[6]=1;
-         //funcion detectar full poker generala
-
-  }
-
-
-}
-/**/
 
 
 //funcion para detectar si hay o no hay una posible jugada
-void hayOnoJugada(int vPJ[]){
+void hayOnoJugada(int vPJ[],int vDados[]){
     bool hayJugada=false;
     int i;
 for (i=0;i<=9;i++){
-        if(vPJ[i]==1)hayJugada=true;
+        if(vPJ[i]==1&&ComNoJug[i]==1)hayJugada=true;
                   }
-hayJugada==true?elegirJugada(vPJ,ComNoJug):CancelarJugada(ComNoJug);
+hayJugada==true?elegirJugada(vPJ,ComNoJug,vDados):CancelarJugada(ComNoJug);
 }
 
 
 
 //f para elegir una jugada que sea posible
-void elegirJugada(int vPJ[],int ComNoJug[]){
+void elegirJugada(int vPJ[],int ComNoJug[],int vDados[]){
     int jugada=0;
     int i;
     cout<<"elija una jugada"<<endl;
     for (i=0;i<=9;i++){
-        if(vPJ[i]==1)cout<<"jugada"<<i+1<<endl;
+        if(vPJ[i]==1&&ComNoJug[i]==1)cout<<"jugada N*"<<i+1<<endl;
 
 
     }
+
     cin>>jugada;
-system("clear");
-while (vPJ[jugada-1]!=1&&ComNoJug[jugada-1]!=1){
+     if(ComNoJug[jugada-1]==0||vPJ[jugada-1]==0){
+            rlutil::cls();
+        while (vPJ[jugada-1]!=1||ComNoJug[jugada-1]!=1){
     cout<<"eligio una jugada que no era posible"<<endl;
     cout<<"elija una jugada"<<endl;
+     mostrarArray(vDados, 50, 11);
     for (i=0;i<=9;i++){
-        if(vPJ[i]==1)cout<<"jugada"<<i+1<<endl;
+        if(vPJ[i]==1&&ComNoJug[i]==1)cout<<"jugada N*"<<i+1<<endl;
     }
     cin>>jugada;
-system("clear");
+rlutil::cls();
 }
-switch(jugada){
-                case 1:
-                    jugadaAlNumero(vDados,jugada ),ComNoJug[jugada-1]=0;
 
+
+     }
+rlutil::cls();
+
+switch(jugada-1){
+                case 0:
+                    jugadaAlNumero(vDados,jugada ),ComNoJug[jugada-1]=0;
                     break;
-                case 2 :
+                case 1 :
                     jugadaAlNumero(vDados,jugada),ComNoJug[jugada-1]=0;
+                    break;
+                case 2:
+                    jugadaAlNumero(vDados,jugada ),ComNoJug[jugada-1]=0;
                     break;
                 case 3:
-                    jugadaAlNumero(vDados,jugada ),ComNoJug[jugada-1]=0;
-                    break;
-                case 4:
                     jugadaAlNumero(vDados,jugada),ComNoJug[jugada-1]=0;
                     break;
-                case 5:
+                case 4:
                     jugadaAlNumero(vDados,jugada ),ComNoJug[jugada-1]=0;
                     break;
-                case 6:
+                case 5:
                      jugadaAlNumero(vDados,jugada),ComNoJug[jugada-1]=0;
                     break;
-                case 7:
+                case 6:
                       escalera(vDados,5 ),ComNoJug[jugada-1]=0;
+                    break;
+                case 7:
+                    armadoDeJuegos(vDados, 5),ComNoJug[jugada-1]=0;
                     break;
                 case 8:
                     armadoDeJuegos(vDados, 5),ComNoJug[jugada-1]=0;
                     break;
                 case 9:
-                    armadoDeJuegos(vDados, 5),ComNoJug[jugada-1]=0;
-                    break;
-                case 10:
                  armadoDeJuegos(vDados, 5),ComNoJug[jugada-1]=0;
 
                 break;
@@ -305,6 +282,7 @@ for (i=0;i<=9;i++){
         if(ComNoJug[i]==1)cout<<"jugada"<<i+1<<endl;
     }
 cin>>jugada;
+rlutil::cls();
 while(ComNoJug[jugada-1]!=1){
     cout<<"eligio una jugada que ya se jugo o ya fue tachada"<<endl;
     cout<<"elija que jugada tachar"<<endl;
@@ -312,7 +290,7 @@ for (i=0;i<=9;i++){
         if(ComNoJug[i]==1)cout<<"jugada"<<i+1<<endl;
     }
 cin>>jugada;
-
+rlutil::cls();
 }
 ComNoJug[jugada-1]=0;
 }
@@ -377,18 +355,6 @@ void PosibleCombinacion(int vDados[],int tam,int vPJ[]){
          if( armadoDeJuegos( vDados,  tam)==40)vPJ[8]=1;
          if( armadoDeJuegos(vDados,  tam)==50)vPJ[9]=1;
 }
-
-//funcion para detectar si hay o no hay una posible jugada
-/**void hayOnoJugada(int vPJ[]){
-    bool hayJugada=false;
-    int i;
-    for (i=0;i<=9;i++){
-            if(vPJ[i]==1)hayJugada=true;
-                      }
-    hayJugada ? elegirJugada(int vPJ[],int ComNoJug[]) : cancelarJugada(int ComNoJug[]);
-}
-
-/**/
 
 
 

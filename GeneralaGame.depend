@@ -32,7 +32,7 @@
 
 1667153412 c:\users\rburn\desktop\generalagame\menu.h
 
-1667336594 source:c:\users\54113\downloads\proyecto_generala\main.cpp
+1667341762 source:c:\users\54113\downloads\proyecto_generala\main.cpp
 	<iostream>
 	<cstdlib>
 	<string.h>
@@ -43,7 +43,7 @@
 	"funciones.h"
 	"Menu.h"
 
-1667243197 c:\users\54113\downloads\proyecto_generala\rlutil.h
+1667341762 c:\users\54113\downloads\proyecto_generala\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -57,11 +57,11 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1667340870 c:\users\54113\downloads\proyecto_generala\jugadoruno.h
+1667568151 c:\users\54113\downloads\proyecto_generala\jugadoruno.h
 	"funciones.h"
 
-1667340831 c:\users\54113\downloads\proyecto_generala\funciones.h
+1667567603 c:\users\54113\downloads\proyecto_generala\funciones.h
 	"jugadorUno.h"
 
-1667338750 c:\users\54113\downloads\proyecto_generala\menu.h
+1667567577 c:\users\54113\downloads\proyecto_generala\menu.h
 

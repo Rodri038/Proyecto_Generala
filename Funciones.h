@@ -18,9 +18,10 @@ int escalera(int vDados[], int tam);
 int armadoDeJuegos(int vDados[], int tam);
 void ponerEnCero(int Array[], int tam);
 void PosibleCombinacion(int vDados[],int tam,int vPJ[]);
-void hayOnoJugada(int vPJ[]);
-void elegirJugada(int vPJ[],int ComNoJug[]);
+void hayOnoJugada(int vPJ[],int vDados[]);
+void elegirJugada(int vPJ[],int ComNoJug[],vDados[]);
 void CancelarJugada(int ComNoJug[]);
 void tirarDados(int vDados[],int tam);
 void volverAtirar(int vDados[],int tam,int vPJ[]);
+void ponerEnUno(int Array[], int tam );
 #endif // FUNCIONES_H_INCLUDED
