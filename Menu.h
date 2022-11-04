@@ -2,11 +2,12 @@
 #define MENU_H_INCLUDED
 
 void menu(){
-        int letra=0, rondas;
-        int puntaje=0, vDadosAzar[5];
-        int comoNoJug[10];
+        int letra=0;
+        //int puntaje=0;
+        int vDadosAzar[5];
+        int comNoJug[10];
         int vPJ[10];
-        char jugador1[20]; //jugador2[20];
+        //char jugador1[20]; //jugador2[20];
         int cursor=0;
         const int inicial=49, comienzoDeTexto=50;
         bool exit=true;
@@ -44,7 +45,7 @@ void menu(){
 //get key escucha la tecla que tocamos y devuelve un entero
         int key = rlutil::getkey();
         posicionDeCursor(inicial, 11, cursor, key);
-        accionesCursor(cursor, key, exit, 5, vDadosAzar, vPJ, comoNoJug);
+        accionesCursor(cursor, key, exit, 5, vDadosAzar, vPJ, comNoJug);
     }while(exit);
 }
 
