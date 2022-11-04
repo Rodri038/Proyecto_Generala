@@ -168,12 +168,12 @@ void PosibleCombinacion(int vDados[],int tam,int vPJ[]){
        if(vDados[i]==4)vPJ[3]=1;
         if(vDados[i]==5)vPJ[4]=1;
          if(vDados[i]==6)vPJ[5]=1;
-    }
+            }
             if( escalera( vDados, tam)==25)vPJ[6]=1;
             if( armadoDeJuegos( vDados,  tam)==30)vPJ[7]=1;
             if( armadoDeJuegos( vDados,  tam)==40)vPJ[8]=1;
             if( armadoDeJuegos(vDados,  tam)==50)vPJ[9]=1;
-            }
+}
 
 /*void pedirNombres(char nombre[]){
     rlutil::cls();
@@ -219,42 +219,58 @@ int jugadaAlNumero(int vDados[],int eleccion){
         return puntos;
 }
 
+void menuElegirJugada(int vPJ[]){
+    int i;
+    for(i = 0; i <= 9; i++){
+        if(vPJ[i] == 1){
+            switch(i){
+            case 0:
+                cout<<"jugada al numero: "<< i + 1<<endl;
+            break;
+            case 1:
+                cout<<"jugada al numero: "<< i + 1<<endl;
+            break;
+            case 2:
+                cout<<"jugada al numero: "<< i + 1<<endl;
+            break;
+            case 3:
+                cout<<"jugada al numero: "<< i + 1<<endl;
+            break;
+            case 4:
+                cout<<"jugada al numero: "<< i + 1<<endl;
+            break;
+            case 5:
+                cout<<"jugada al numero: "<< i + 1<<endl;
+            break;
+            case 6:
+                cout<<"jugada a Escalera "<<endl;
+            break;
+            case 7:
+                cout<<"jugada a Full "<<endl;
+            break;
+            case 8:
+                cout<<"jugada a Poker "<<endl;
+            break;
+            case 9:
+                cout<<"jugada a Generala "<<endl;
+            break;
+            }
+        }
+    }
+}
+
 //f para elegir una jugada que sea posible
 void elegirJugada(int vDados[] , int vPJ[],int ComNoJug[]){
     int jugada=0;
     int i;
     cout<<"elija una jugada"<<endl;
-        for (i = 0 ;i <= 9; i++){
-        if(vPJ[i]==1){
-                cout<<"jugada al numero: "<< i + 1<<endl;
-        }else if(vPJ[i] == 1 || i == 6){
-                cout<<"Jugada a escalera"<<endl;
-        }else if(vPJ[i] == 1 || i == 7){
-                cout<<"Jugada a full"<<endl;
-        }else if(vPJ[i] == 1 || i == 8){
-                cout<<"Jugada a Poker"<<endl;
-        }else if(vPJ[i] == 1 || i == 9){
-                cout<<"Jugada Generala"<<endl;
-        };
-}
+    menuElegirJugada(vPJ);
     //mostrarJugadasPosibles(vPJ);
     cin>>jugada;
     while (vPJ[jugada-1]!=1&&ComNoJug[jugada-1]!=1){
         cout<<"eligio una jugada que no era posible"<<endl;
         cout<<"elija una jugada"<<endl;
-            for ( i= 0 ; i <= 9 ; i++ ){
-                if(vPJ[i]==1 && i < 6){
-                        cout<<"jugada al numero: "<< i +1<<endl;
-                }else if(vPJ[i] == 1 || i == 6){
-                        cout<<"Jugada a escalera"<<endl;
-                }else if(vPJ[i] == 1 || i == 7){
-                        cout<<"Jugada a full"<<endl;
-                }else if(vPJ[i] == 1 || i == 8){
-                        cout<<"Jugada a Poker"<<endl;
-                }else if(vPJ[i] == 1 || i == 9){
-                        cout<<"Jugada Generala"<<endl;
-                }
-            }
+        menuElegirJugada(vPJ);
                 cin>>jugada;
     }
 switch(jugada){
@@ -287,8 +303,7 @@ switch(jugada){
                     break;
                 case 10:
                  armadoDeJuegos(vDados, 5),ComNoJug[jugada-1]=0;
-
-                break;
+                 break;
     }
 }
 
@@ -326,7 +341,7 @@ int escalera(int vDados[], int tam){
 //Funcion para detectar los juegos de Full-Poker-Generala
 int armadoDeJuegos(int vDados[], int tam){
     int i, igualesAnterior=0, iguales=0, cantIguales=1, auxiliar, puntos=0;
-    auxiliar=vDados[0];
+    auxiliar = vDados[0];
     for(i = 1; i <= tam-1; i++){
         if(vDados[i]==auxiliar){
             if(iguales==0){

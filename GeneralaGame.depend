@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1667396829 source:c:\users\rburn\desktop\generalagame\main.cpp
+1667522761 source:c:\users\rburn\desktop\generalagame\main.cpp
 	<iostream>
 	<cstdlib>
 	<string.h>
@@ -10,10 +10,10 @@
 	"funciones.h"
 	"Menu.h"
 
-1667522620 c:\users\rburn\desktop\generalagame\jugadoruno.h
+1667533007 c:\users\rburn\desktop\generalagame\jugadoruno.h
 	"funciones.h"
 
-1667515253 c:\users\rburn\desktop\generalagame\funciones.h
+1667523907 c:\users\rburn\desktop\generalagame\funciones.h
 	"jugadorUno.h"
 
 1667242477 c:\users\rburn\desktop\generalagame\rlutil.h
@@ -30,5 +30,5 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1667518710 c:\users\rburn\desktop\generalagame\menu.h
+1667522761 c:\users\rburn\desktop\generalagame\menu.h
 

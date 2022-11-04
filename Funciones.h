@@ -20,6 +20,7 @@ void ponerEnCero(int Array[], int tam);
 void PosibleCombinacion(int vDados[],int tam,int vPJ[]);
 void hayOnoJugada(int vPJ[], int comoNoJug[], int vDados[]);
 void elegirJugada( int vDados[], int vPJ[],int ComNoJug[]);
+void menuElegirJugada(int vPJ[]);
 void CancelarJugada(int ComNoJug[]);
 void tirarDados(int vDados[],int tam);
 void volverAtirar(int vDados[],int tam,int vPJ[], int comoNoJug[]);
