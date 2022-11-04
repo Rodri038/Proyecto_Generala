@@ -10,10 +10,10 @@
 	"funciones.h"
 	"Menu.h"
 
-1667568121 c:\users\rburn\desktop\generalagame\jugadoruno.h
+1667569956 c:\users\rburn\desktop\generalagame\jugadoruno.h
 	"funciones.h"
 
-1667568052 c:\users\rburn\desktop\generalagame\funciones.h
+1667568227 c:\users\rburn\desktop\generalagame\funciones.h
 	"jugadorUno.h"
 
 1667242477 c:\users\rburn\desktop\generalagame\rlutil.h
@@ -30,5 +30,5 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1667568149 c:\users\rburn\desktop\generalagame\menu.h
+1667568227 c:\users\rburn\desktop\generalagame\menu.h
 

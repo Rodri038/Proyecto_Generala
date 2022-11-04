@@ -218,9 +218,6 @@ void ponerEnCero(int vDados[], int tam ){
 }
 */
 
-
-
-
 //funcion para jugar al numero, recibe un vector, y retorna los puntos de acuerdo a la eleccion del numero
 int jugadaAlNumero(int vDados[],int eleccion){
     int  i, cant=0, puntos;
@@ -232,10 +229,10 @@ int jugadaAlNumero(int vDados[],int eleccion){
         return puntos;
 }
 
-void menuElegirJugada(int vPJ[]){
+void menuElegirJugada(int vPJ[], int comoNoJug[]){
     int i;
     for(i = 0; i <= 9; i++){
-        if(vPJ[i] == 1){
+       if(vPJ[i]==1&&comoNoJug[i]==1){
             switch(i){
             case 0:
                 cout<<"jugada al numero: "<< i + 1<<endl;
@@ -273,70 +270,72 @@ void menuElegirJugada(int vPJ[]){
 }
 
 //f para elegir una jugada que sea posible
-void elegirJugada(int vPJ[],int ComNoJug[], int vDados[]){
+void elegirJugada(int vPJ[],int comoNoJug[], int vDados[]){
     int jugada=0;
     cout<<"elija una jugada"<<endl;
-    menuElegirJugada(vPJ);
+    menuElegirJugada(vPJ, comoNoJug);
     //mostrarJugadasPosibles(vPJ);
     cin>>jugada;
-    while (vPJ[jugada-1]!=1||ComNoJug[jugada-1]!=1){
+    if(comoNoJug[jugada-1]==0||vPJ[jugada-1]==0){
+    while (vPJ[jugada-1]!=1||comoNoJug[jugada-1]!=1){
         cout<<"eligio una jugada que no era posible"<<endl;
         cout<<"elija una jugada"<<endl;
-        menuElegirJugada(vPJ);
+        menuElegirJugada(vPJ, comoNoJug);
         cin>>jugada;
     }
+}
 switch(jugada){
                 case 1:
-                    jugadaAlNumero(vDados , jugada ),ComNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados , jugada ),comoNoJug[jugada-1]=0;
                     break;
                 case 2 :
-                    jugadaAlNumero(vDados,jugada),ComNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados,jugada),comoNoJug[jugada-1]=0;
                     break;
                 case 3:
-                    jugadaAlNumero(vDados,jugada ),ComNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados,jugada ),comoNoJug[jugada-1]=0;
                     break;
                 case 4:
-                    jugadaAlNumero(vDados,jugada),ComNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados,jugada),comoNoJug[jugada-1]=0;
                     break;
                 case 5:
-                    jugadaAlNumero(vDados,jugada ),ComNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados,jugada ),comoNoJug[jugada-1]=0;
                     break;
                 case 6:
-                     jugadaAlNumero(vDados,jugada),ComNoJug[jugada-1]=0;
+                     jugadaAlNumero(vDados,jugada),comoNoJug[jugada-1]=0;
                     break;
                 case 7:
-                      escalera(vDados, 5 ),ComNoJug[jugada-1]=0;
+                      escalera(vDados, 5 ),comoNoJug[jugada-1]=0;
                     break;
                 case 8:
-                    armadoDeJuegos(vDados, 5),ComNoJug[jugada-1]=0;
+                    armadoDeJuegos(vDados, 5),comoNoJug[jugada-1]=0;
                     break;
                 case 9:
-                    armadoDeJuegos(vDados, 5),ComNoJug[jugada-1]=0;
+                    armadoDeJuegos(vDados, 5),comoNoJug[jugada-1]=0;
                     break;
                 case 10:
-                 armadoDeJuegos(vDados, 5),ComNoJug[jugada-1]=0;
+                 armadoDeJuegos(vDados, 5),comoNoJug[jugada-1]=0;
                  break;
     }
 }
 
 //f para tachar jugada , cuando no hay jugada posible
-void CancelarJugada(int ComNoJug[]){
+void CancelarJugada(int comoNoJug[]){
 int i , jugada;
 cout<<"no hay una jugada posible "<<endl;
 cout<<"elija que jugada tachar"<<endl;
 for (i = 0; i<= 9 ; i++){
-        if(ComNoJug[i]==1)cout<<"jugada "<< i + 1 <<endl;
+        if(comoNoJug[i]==1)cout<<"jugada "<< i + 1 <<endl;
     }
 cin>>jugada;
-while(ComNoJug[jugada-1]!=1){
+while(comoNoJug[jugada-1]!=1){
     cout<<"eligio una jugada que ya se jugo o ya fue tachada"<<endl;
     cout<<"elija que jugada tachar"<<endl;
 for (i=0;i<=9;i++){
-        if(ComNoJug[i]==1)cout<<"jugada "<<i+1<<endl;
+        if(comoNoJug[i]==1)cout<<"jugada "<<i+1<<endl;
     }
 cin>>jugada;
 }
-ComNoJug[jugada-1]=0;
+comoNoJug[jugada-1]=0;
 }
 
 //funcion para  detectar el juego Escalera
