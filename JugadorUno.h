@@ -38,15 +38,16 @@ void ponerEnUno(int Array[], int tam ){
    }
 }
 
-
-void accionesCursor(int posCursor, int tecla, bool &salida, int tam,int vDados[], int vPJ[], int comoNoJug[]){
+void accionesCursor(int posCursor, int tecla, bool &salida, int tam, int vDados[], int vPJ[], int comoNoJug[], int puntaje[], int &jugador){
     int cantRondas;
             if(tecla == 1){
                 switch(posCursor){
                     case 0:
                     rlutil::cls();
+                    jugador = 0;
+                    puntaje[jugador] = 0;
                     cantRondas = cantidadDeRondas();
-                    comienzo(vDados,tam,cantRondas,vPJ, comoNoJug);
+                    comienzo(vDados,tam,cantRondas,vPJ, comoNoJug, puntaje, jugador);
                         break;
                     case 1:
                     cout<<"Me presionaste en jugador 2"<<endl;
@@ -63,6 +64,7 @@ void accionesCursor(int posCursor, int tecla, bool &salida, int tam,int vDados[]
         }
     }
 }
+
 //da comienzo a la partida
 int cantidadDeRondas(){
     int rondas=0;
@@ -75,11 +77,12 @@ int cantidadDeRondas(){
     return rondas;
 }
 
-void comienzo(int vDados[], int tam, int cantRondas, int vPJ[], int comoNoJug[]){
+void comienzo(int vDados[], int tam, int cantRondas, int vPJ[], int comoNoJug[], int puntaje[], int &jugador){
     int contador=1;
     ponerEnUno(comoNoJug, 10);
+    mostrarPuntaje(puntaje, jugador);
     do{
-    volverAtirar(vDados, tam, vPJ, comoNoJug);
+    volverAtirar(vDados, tam, vPJ, comoNoJug, puntaje, jugador);
     cout<<"Ronda numero :"<<contador<<endl;
     system("pause");
     rlutil::cls();
@@ -87,13 +90,15 @@ void comienzo(int vDados[], int tam, int cantRondas, int vPJ[], int comoNoJug[])
     }while(contador <= cantRondas);
 }
 
-void volverAtirar(int vDados[],int tam, int vPJ[], int comoNoJug[]){
+void volverAtirar(int vDados[],int tam, int vPJ[], int comoNoJug[], int puntaje[], int &jugador){
 int contador =1,n;
 bool eligio=false;
     tirarDados( vDados,tam);
+    mostrarPuntaje(puntaje, jugador);
 while (contador<3){//el tema esta en que cuando cambia dados, los cambia, pero a su vez vuelve a tirar
+
     ponerEnCero( vPJ, 10);
-    PosibleCombinacion( vDados, tam, vPJ);
+    posibleCombinacion( vDados, tam, vPJ, puntaje, jugador);
     rlutil::locate(2, 15);
     cout<<"quiere volver a tirar"<<endl;
     cout<<"[SI] ingrese 1 , [NO] ingrese 0: ";
@@ -105,11 +110,13 @@ while (contador<3){//el tema esta en que cuando cambia dados, los cambia, pero a
         rlutil::cls();
         mostrarArray(vDados, 50, 11);
         contador++;
-        PosibleCombinacion(vDados, tam, vPJ);
+        posibleCombinacion(vDados, tam, vPJ, puntaje, jugador);
     break;
     case 0:
         eligio=true;
-        hayOnoJugada(vPJ, comoNoJug, vDados);
+        ponerEnCero(vPJ, 10);
+        posibleCombinacion(vDados, tam, vPJ, puntaje, jugador);
+        hayOnoJugada(vPJ, comoNoJug, vDados, puntaje, jugador);
         contador=3;
     break;
     default:
@@ -118,7 +125,7 @@ while (contador<3){//el tema esta en que cuando cambia dados, los cambia, pero a
     break;
         }
     }
-    if(!eligio) hayOnoJugada(vPJ, comoNoJug, vDados);
+    if(!eligio) hayOnoJugada(vPJ, comoNoJug, vDados, puntaje, jugador);
     contador=1;
     eligio=false;
 }
@@ -130,7 +137,7 @@ void tirarDados(int vDados[],int tam){
     mostrarArray(vDados, 50, 11);
 }
 
-void PosibleCombinacion(int vDados[],int tam,int vPJ[]){
+void posibleCombinacion(int vDados[],int tam, int vPJ[], int puntaje[], int &jugador){
   int i;
   for (i = 0; i <tam ; i++){
     if(vDados[i]==1)vPJ[0]=1;
@@ -140,10 +147,10 @@ void PosibleCombinacion(int vDados[],int tam,int vPJ[]){
         if(vDados[i]==5)vPJ[4]=1;
          if(vDados[i]==6)vPJ[5]=1;
             }
-            if( escalera( vDados, tam)==25)vPJ[6]=1;
-            if( armadoDeJuegos( vDados,  tam)==30)vPJ[7]=1;
-            if( armadoDeJuegos( vDados,  tam)==40)vPJ[8]=1;
-            if( armadoDeJuegos(vDados,  tam)==50)vPJ[9]=1;
+            if( escalera( vDados, tam, puntaje, jugador) == 25) vPJ [6] = 1;
+            if( armadoDeJuegos( vDados,  tam, puntaje, jugador) == 30) vPJ [7] =1;
+            if( armadoDeJuegos( vDados,  tam, puntaje, jugador) == 40) vPJ [8] =1;
+            if( armadoDeJuegos(vDados,  tam, puntaje, jugador) == 50) vPJ [9] =1;
 }
 
 //funcion para elegir cambiar dados
@@ -161,13 +168,13 @@ void cambiarDados(int vDados[]){
 }
 
 //funcion para detectar si hay o no hay una posible jugada
-void hayOnoJugada(int vPJ[], int ComNoJug[], int vDados[]){
-    bool hayJugada=false;
+void hayOnoJugada(int vPJ[], int comoNoJug[], int vDados[], int puntaje[], int &jugador){
+    bool hayJugada = false;
     int i;
 for (i=0;i<=9;i++){
-        if(vPJ[i]==1&&ComNoJug[i]==1)hayJugada=true;
+        if(vPJ[i]==1&&comoNoJug[i]==1) hayJugada=true;
                   }
-hayJugada ? elegirJugada(vPJ,ComNoJug, vDados) : CancelarJugada(ComNoJug);
+hayJugada ? elegirJugada(vPJ,comoNoJug, vDados, puntaje, jugador) : CancelarJugada(comoNoJug);
 }
 
 //carga los numeros del array y genera un numero aleatorio por cada posicion
@@ -176,7 +183,7 @@ void cargarDados(int vDados[], int tam){
         srand(time(NULL));
         for(i = 0; i<=tam-1; i++){
             vDados[i] = rand() % 6 + 1;
-        }
+    }
 }
 
 //menu de opciones principal
@@ -208,7 +215,6 @@ void ponerEnCero(int vDados[], int tam ){
    }
 }
 
-
 /*void pedirNombres(char nombre[]){
     rlutil::cls();
     mostrarTexto("Ingrese su nombre para comenzar a jugar: ", 40, 10);
@@ -219,20 +225,20 @@ void ponerEnCero(int vDados[], int tam ){
 */
 
 //funcion para jugar al numero, recibe un vector, y retorna los puntos de acuerdo a la eleccion del numero
-int jugadaAlNumero(int vDados[],int eleccion){
+int jugadaAlNumero(int vDados[], int eleccion, int puntaje[], int &jugador){
     int  i, cant=0, puntos;
 
         for(i =0; i<=4;i++){
             if(eleccion == vDados[i]) cant++;
         }
-        eleccion == 1 ? puntos = cant : puntos = eleccion*cant;
-        return puntos;
+        eleccion == 1 ? puntos = cant : puntos = eleccion * cant;
+        puntaje[jugador] += puntos;
 }
 
-void menuElegirJugada(int vPJ[], int comoNoJug[]){
+void menuElegirJugada(int vPJ[],int comoNoJug[]){
     int i;
     for(i = 0; i <= 9; i++){
-       if(vPJ[i]==1&&comoNoJug[i]==1){
+        if(vPJ[i] == 1&&comoNoJug[i]==1){
             switch(i){
             case 0:
                 cout<<"jugada al numero: "<< i + 1<<endl;
@@ -253,16 +259,16 @@ void menuElegirJugada(int vPJ[], int comoNoJug[]){
                 cout<<"jugada al numero: "<< i + 1<<endl;
             break;
             case 6:
-                cout<<"jugada a Escalera "<<endl;
+                cout<<"jugada a Escalera: "<<i +1<<endl;
             break;
             case 7:
-                cout<<"jugada a Full "<<endl;
+                cout<<"jugada a Full: "<<i +1<<endl;
             break;
             case 8:
-                cout<<"jugada a Poker "<<endl;
+                cout<<"jugada a Poker: "<<i +1<<endl;
             break;
             case 9:
-                cout<<"jugada a Generala "<<endl;
+                cout<<"jugada a Generala: "<<i +1<<endl;
             break;
             }
         }
@@ -270,50 +276,48 @@ void menuElegirJugada(int vPJ[], int comoNoJug[]){
 }
 
 //f para elegir una jugada que sea posible
-void elegirJugada(int vPJ[],int comoNoJug[], int vDados[]){
+void elegirJugada(int vPJ[],int comoNoJug[], int vDados[], int puntaje[], int &jugador){
     int jugada=0;
     cout<<"elija una jugada"<<endl;
-    menuElegirJugada(vPJ, comoNoJug);
+    menuElegirJugada(vPJ,comoNoJug);
     //mostrarJugadasPosibles(vPJ);
     cin>>jugada;
-    if(comoNoJug[jugada-1]==0||vPJ[jugada-1]==0){
     while (vPJ[jugada-1]!=1||comoNoJug[jugada-1]!=1){
         cout<<"eligio una jugada que no era posible"<<endl;
         cout<<"elija una jugada"<<endl;
-        menuElegirJugada(vPJ, comoNoJug);
+        menuElegirJugada(vPJ,comoNoJug);
         cin>>jugada;
     }
-}
 switch(jugada){
                 case 1:
-                    jugadaAlNumero(vDados , jugada ),comoNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados , jugada, puntaje, jugador ),comoNoJug[jugada-1]=0;
                     break;
                 case 2 :
-                    jugadaAlNumero(vDados,jugada),comoNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados,jugada, puntaje, jugador),comoNoJug[jugada-1]=0;
                     break;
                 case 3:
-                    jugadaAlNumero(vDados,jugada ),comoNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados,jugada, puntaje, jugador ),comoNoJug[jugada-1]=0;
                     break;
                 case 4:
-                    jugadaAlNumero(vDados,jugada),comoNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados,jugada, puntaje, jugador),comoNoJug[jugada-1]=0;
                     break;
                 case 5:
-                    jugadaAlNumero(vDados,jugada ),comoNoJug[jugada-1]=0;
+                    jugadaAlNumero(vDados,jugada, puntaje, jugador ),comoNoJug[jugada-1]=0;
                     break;
                 case 6:
-                     jugadaAlNumero(vDados,jugada),comoNoJug[jugada-1]=0;
+                     jugadaAlNumero(vDados,jugada, puntaje, jugador),comoNoJug[jugada-1]=0;
                     break;
                 case 7:
-                      escalera(vDados, 5 ),comoNoJug[jugada-1]=0;
+                      escalera(vDados, 5 , puntaje, jugador),comoNoJug[jugada-1]=0;
                     break;
                 case 8:
-                    armadoDeJuegos(vDados, 5),comoNoJug[jugada-1]=0;
+                    armadoDeJuegos(vDados, 5, puntaje, jugador),comoNoJug[jugada-1]=0;
                     break;
                 case 9:
-                    armadoDeJuegos(vDados, 5),comoNoJug[jugada-1]=0;
+                    armadoDeJuegos(vDados, 5, puntaje, jugador),comoNoJug[jugada-1]=0;
                     break;
                 case 10:
-                 armadoDeJuegos(vDados, 5),comoNoJug[jugada-1]=0;
+                 armadoDeJuegos(vDados, 5, puntaje, jugador),comoNoJug[jugada-1]=0;
                  break;
     }
 }
@@ -339,18 +343,18 @@ comoNoJug[jugada-1]=0;
 }
 
 //funcion para  detectar el juego Escalera
-int escalera(int vDados[], int tam){
+int escalera(int vDados[], int tam, int puntaje[], int &jugador){
     int i, valor, puntos=25;
     bool juego=true;
-        valor=vDados[0];
+        valor = vDados[0];
         for(i = 1; i <=tam-1;i++){
-            vDados[i]==(valor+1) ? valor=vDados[i] : juego=false;
+            vDados [i] == (valor+1) ? valor=vDados[i] : juego=false;// 1 2 3 4 5
         }
-        if(juego) return puntos;
+        if(juego) puntaje[jugador] += puntos;
 }
 
 //Funcion para detectar los juegos de Full-Poker-Generala
-int armadoDeJuegos(int vDados[], int tam){
+int armadoDeJuegos(int vDados[], int tam, int puntaje[], int &jugador){
     int i, igualesAnterior=0, iguales=0, cantIguales=1, auxiliar, puntos=0;
     auxiliar = vDados[0];
     for(i = 1; i <= tam-1; i++){
@@ -375,9 +379,13 @@ int armadoDeJuegos(int vDados[], int tam){
     }else if(iguales==4&&cantIguales==2){
         puntos=40;
     }
-    return puntos;
+    puntaje[jugador] += puntos;
 }
 
-
+void mostrarPuntaje(int puntaje[], int &jugador){
+    mostrarTexto("PUNTAJE: ", 40, 1);
+    rlutil::locate(51, 1);
+    cout<<puntaje[jugador]<<endl;
+}
 #endif // JUGADORUNO_H_INCLUDED
 

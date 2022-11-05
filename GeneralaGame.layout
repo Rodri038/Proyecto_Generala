@@ -2,24 +2,25 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="12" zoom_2="0">
+	<File name="Funciones.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="290" topLine="0" />
+			<Cursor1 position="803" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Menu.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="334" topLine="0" />
+			<Cursor1 position="1736" topLine="15" />
 		</Cursor>
 	</File>
-	<File name="JugadorUno.h" open="1" top="1" tabpos="3" split="0" active="1" splitpos="954" zoom_1="4" zoom_2="3">
+	<File name="JugadorUno.h" open="1" top="1" tabpos="3" split="2" active="1" splitpos="954" zoom_1="5" zoom_2="6">
 		<Cursor>
-			<Cursor1 position="8493" topLine="168" />
+			<Cursor1 position="3678" topLine="126" />
+			<Cursor2 position="3109" topLine="89" />
 		</Cursor>
 	</File>
-	<File name="Funciones.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="12" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1279" topLine="0" />
+			<Cursor1 position="290" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
