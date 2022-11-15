@@ -122,13 +122,13 @@ while (contador<3){//el tema esta en que cuando cambia dados, los cambia, pero a
     }
     switch(n){
     case 1:
-        cambiarDados(vDados);
-        ponerEnCero(vPJ, 10);
-        rlutil::cls();
-        ordenarDeMenorAMayor(vDados, tam);
-        mostrarArray(vDados, 50, 12);
-        contador++;
-        posibleCombinacion(vDados, tam, vPJ);
+    cambiarDados(vDados);
+    ponerEnCero(vPJ, 10);
+    rlutil::cls();
+    ordenarDeMenorAMayor(vDados, tam);
+    mostrarArray(vDados, 50, 12);
+    contador++;
+    posibleCombinacion(vDados, tam, vPJ);
     break;
     case 2:
     eligio = true;
@@ -136,20 +136,20 @@ while (contador<3){//el tema esta en que cuando cambia dados, los cambia, pero a
     contador = 3;
     break;
     case 0:
-        eligio = true;
-        rlutil::cls();
-        mostrarPuntaje(puntaje, jugador);
-        mostrarNombre(nombre);
-        ordenarDeMenorAMayor(vDados, tam);
-        mostrarArray(vDados, 50, 12);
-        ponerEnCero(vPJ, 10);
-        posibleCombinacion(vDados, tam, vPJ);
-        hayOnoJugada(vPJ, comoNoJug, vDados, puntaje, jugador , nroTiradas, salida);
-        contador = 3;
+    eligio = true;
+    rlutil::cls();
+    mostrarPuntaje(puntaje, jugador);
+    mostrarNombre(nombre);
+    ordenarDeMenorAMayor(vDados, tam);
+    mostrarArray(vDados, 50, 12);
+    ponerEnCero(vPJ, 10);
+    posibleCombinacion(vDados, tam, vPJ);
+    hayOnoJugada(vPJ, comoNoJug, vDados, puntaje, jugador , nroTiradas, salida);
+    contador = 3;
     break;
     default:
-        rlutil::cls();
-        mostrarTexto("Ingrese una opcion correcta", 50, 14);
+    rlutil::cls();
+    mostrarTexto("Ingrese una opcion correcta", 50, 14);
     break;
         }
     }
