@@ -1,20 +1,27 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
+#include "Funciones.h"
+#include "JugadorUno.h"
+#include "JugadorDos.h"
 
-int moverCursor(int posX, int posY, int valorCursor, int caracter){
+
+void moverCursor(int posX, int posY, int valorCursor, int caracter){
         rlutil::locate(posX, posY + valorCursor);
         cout<< (char)caracter <<endl;
         }
 
+
+
 void menu(){
         int tiradas;
         int letra=0;
-        int puntajes[2];
-        int nroDeJugador;
+        int puntajes[2] = {};
         int vDadosAzar[5];
         int comNoJug[10];
+        int comNoJug2[10];
         int vPJ[10];
-        char jugador1[20]; //jugador2[20];
+        char jugador1[20] = {};
+        char jugador2[20] = {};
         int cursor=0;
         const int inicial=49, comienzoDeTexto=50;
         bool exit=true;
@@ -48,8 +55,8 @@ void menu(){
         moverCursor(49, 11, cursor, letra);//cursor
         //get key escucha la tecla que tocamos y devuelve un entero
         int key = rlutil::getkey();
-        posicionDeCursor(inicial, 11, cursor, key);
-        accionesCursor(cursor, key, exit, 5, vDadosAzar, vPJ, comNoJug, puntajes, nroDeJugador, tiradas, jugador1);
+        posicionDeCursor(inicial, 11, cursor, key, 4);
+        accionesCursor(cursor, key, exit, 5, vDadosAzar, vPJ, comNoJug, puntajes, tiradas, jugador1, jugador2, comNoJug2);
     }while(exit);
 }
 

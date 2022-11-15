@@ -33,6 +33,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Funciones.h" />
+		<Unit filename="JugadorDos.h" />
 		<Unit filename="JugadorUno.h" />
 		<Unit filename="Menu.h" />
 		<Unit filename="main.cpp" />

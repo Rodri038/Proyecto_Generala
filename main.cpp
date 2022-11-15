@@ -1,7 +1,8 @@
 ///TP-Generala
-//Alumnos: Rodrigo Burns; Ignacio Orco Barbeberis; Cristian Santiago Godoy
+//Alumnos: Rodrigo Burns; Ignacio Orco Barbeberis;
 #include <iostream>
 #include <cstdlib>
+#include <conio.h>
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
@@ -10,15 +11,17 @@
 
 using namespace std;
 
-#include "jugadorUno.h"
-#include "funciones.h"
+#include "Funciones.h"
+#include "JugadorUno.h"
+#include "JugadorDos.h"
 #include "Menu.h"
 
-int main(){;
+int main(){
 
 menu();
 
-}
+return 0;
+};
 
 
 
