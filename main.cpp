@@ -18,7 +18,8 @@ using namespace std;
 
 int main(){
 
-menu();
+int puntajes[2] = {};
+cargarMenu(50, 10, puntajes);
 
 return 0;
 };
