@@ -4,61 +4,56 @@
 #include "JugadorUno.h"
 #include "JugadorDos.h"
 
+void cargarMenu(int xPosTexto, int yPosTexto, int puntaje[]){
+    int op = 1, y = 0;
+    char jugador1[20] = {};
+    char jugador2[20] = {};
+    rlutil::hidecursor();
 
-void moverCursor(int posX, int posY, int valorCursor, int caracter){
-        rlutil::locate(posX, posY + valorCursor);
-        cout<< (char)caracter <<endl;
+    do{
+    mostrarTexto("Jugar de a uno", xPosTexto, yPosTexto);
+    mostrarTexto("Jugar de a dos", xPosTexto, yPosTexto+1);
+    mostrarTexto("Puntaje", xPosTexto, yPosTexto+2);
+    mostrarTexto("Salir", xPosTexto, yPosTexto+3);
+    //posicion en la que se dibuja el cursor
+    rlutil::locate((xPosTexto - 2),yPosTexto + y);
+    std::cout<<(char)175<<std::endl;
+
+    switch(rlutil::getkey()){
+    case 14:
+        rlutil::locate((xPosTexto - 2),yPosTexto + y);//Arriba
+        std::cout<<" "<<std::endl;
+        y--;
+        if(y <= 0) y = 0;
+        break;
+    case 15:
+        rlutil::locate((xPosTexto - 2),yPosTexto + y);//Abajo
+        std::cout<<" "<<std::endl;
+        y++;
+        if(y >= 3) y = 3;
+        break;
+    case 1://Enter
+        accionesDeCursor(y, puntaje, op, jugador1, jugador2);
+        break;
         }
-
-
-
-void menu(){
-        int tiradas;
-        int letra=0;
-        int puntajes[2] = {};
-        int vDadosAzar[5];
-        int comNoJug[10];
-        int comNoJug2[10];
-        int vPJ[10];
-        char jugador1[20] = {};
-        char jugador2[20] = {};
-        int cursor=0;
-        const int inicial=49, comienzoDeTexto=50;
-        bool exit=true;
-
-        //hide cursor ocultar el cursor
-        rlutil::hidecursor();
-            do{
-                switch(cursor){
-                case 0:
-                    letra=74;
-                    break;
-                case 1:
-                    letra=74;
-                    break;
-                case 2:
-                    letra=80;
-                    break;
-                case 3:
-                    letra=83;
-                    break;
-                }
-        mostrarTexto("Elija una opcion para comenzar a jugar", 40,10);
-        mostrarTexto("j", inicial,11);
-        mostrarTexto("ugar de a UNO", comienzoDeTexto,11);//case 0
-        mostrarTexto("j", inicial,12);
-        mostrarTexto("ugar de a DOS", comienzoDeTexto,12);//case 1
-        mostrarTexto("p", inicial,13);
-        mostrarTexto("untaje   ", comienzoDeTexto,13);//case 2
-        mostrarTexto("s", inicial,14);
-        mostrarTexto("alir del juego", comienzoDeTexto,14);//case 3
-        moverCursor(49, 11, cursor, letra);//cursor
-        //get key escucha la tecla que tocamos y devuelve un entero
-        int key = rlutil::getkey();
-        posicionDeCursor(inicial, 11, cursor, key, 4);
-        accionesCursor(cursor, key, exit, 5, vDadosAzar, vPJ, comNoJug, puntajes, tiradas, jugador1, jugador2, comNoJug2);
-    }while(exit);
+    }while(op != 0);
 }
 
-
+void accionesDeCursor(int &key, int puntaje[], int &salida, char nombre1[], char nombre2[]){
+     switch(key){
+                    case 0:
+                    jugadorDeAUno(puntaje, nombre1);
+                    break;
+                    case 1:
+                    jugadorDeADos(puntaje, nombre1, nombre2);
+                    break;
+                    case 2:
+                    MuestraPuntajes(nombre1,nombre2, puntaje);
+                    break;
+                    case 3:
+                    salida = 0;
+                    break;
+        }
+}
 #endif // MENU_H_INCLUDED
+
