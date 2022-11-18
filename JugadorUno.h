@@ -12,7 +12,7 @@ void jugadorDeAUno(int puntaje[],char nombre1[]){
     char jugador1[20] = {};
     puntaje[0] = 0;
     cantRondas = cantidadDeRondas();
-    pedirNombres(jugador1);
+    pedirNombres(nombre1);
     rlutil::cls();
     comienzo(vDadosAzar, 5, cantRondas, vPJ, comNoJug, puntaje, nombre1, 0);
 }
